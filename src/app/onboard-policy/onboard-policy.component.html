@@ -1,0 +1,106 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">OnBoard Policy</span>
+</mat-toolbar>
+
+<div class="container" *ngIf="!post" novalidate>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile >
+        <mat-form-field class="form-element" appearance="outline">
+          <mat-label>Lifespan</mat-label>
+          <mat-select formControlName="lifespan" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let lifespan of lifespans" [value]="lifespan">
+              {{lifespan}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile >
+        <mat-form-field class="form-element" appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile >
+        <mat-form-field class="form-element" appearance="outline">
+          <mat-label>Environment</mat-label>
+          <mat-select formControlName="environment" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let environment of environments" [value]="environment">
+              {{environment}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile >
+        <mat-form-field class="form-element" appearance="outline">
+          <mat-label>Plan</mat-label>
+          <mat-select formControlName="environment" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let plan of plans" [value]="plan">
+              {{plan}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile >
+        <mat-form-field class="form-element" appearance="outline" appearance="outline" appearance="outline">
+          <mat-label>Configuration Item ID</mat-label>
+          <input formControlName="configurationItemId" matInput placeholder="Configuration Item ID" required>
+          <mat-error *ngIf="!formGroup.controls['configurationItemId'].valid && formGroup.controls['configurationItemId'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile >
+        <mat-form-field class="form-element" appearance="outline" appearance="outline" appearance="outline">
+          <mat-label>Policy Owner</mat-label>
+          <input formControlName="policyOwner" matInput placeholder="Policy Owner" required>
+          <mat-error *ngIf="!formGroup.controls['policyOwner'].valid && formGroup.controls['policyOwner'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <span class="app-button-row">
+          <button mat-raised-button color="primary" type="submit" class="button">Submit</button>
+        </span>
+        <span class="separator"></span>
+        <span class="app-button-row">
+          <button mat-raised-button color="primary" type="submit" class="button">Cancel</button>
+        </span>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </form>
+</div>
+
+<pre>
+  {{formGroup.value | json}}
+</pre>
